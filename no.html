@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Hayır 😢</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to top, #555, #999);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #eee;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .fog {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+    animation: moveFog 60s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes moveFog {
+    0% { transform: translateX(0) translateY(0); }
+    100% { transform: translateX(50px) translateY(50px); }
+  }
+
+  h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    animation: fadeScale 1.5s forwards;
+    color: #f0f0f0;
+  }
+
+  .text-box {
+    background: rgba(0,0,0,0.5);
+    padding: 30px 40px;
+    border-radius: 20px;
+    max-width: 600px;
+    backdrop-filter: blur(5px);
+  }
+
+  p {
+    font-size: 1.3em;
+    line-height: 1.6;
+    color: #fff;
+    margin: 0;
+  }
+
+  .sad {
+    font-size: 2em;
+    margin-top: 20px;
+    animation: floatEmoji 2s infinite alternate;
+  }
+
+  @keyframes fadeScale {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes floatEmoji {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-10px) rotate(-5deg); }
+  }
+
+  .drop {
+    position: absolute;
+    width: 6px;
+    height: 12px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    animation: fall linear infinite;
+  }
+
+  .broken-heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #d6336c;
+    transform: rotate(45deg);
+    opacity: 0.4;
+    animation: fallHeart linear infinite;
+  }
+
+  .broken-heart::before,
+  .broken-heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #d6336c;
+    border-radius: 50%;
+  }
+
+  .broken-heart::before { top: -10px; left: 0; }
+  .broken-heart::after { left: 10px; top: 0; }
+
+  @keyframes fall {
+    0% { transform: translateY(-20px); opacity: 0.2; }
+    50% { opacity: 0.4; }
+    100% { transform: translateY(110vh); opacity: 0; }
+  }
+
+  @keyframes fallHeart {
+    0% { transform: translateY(-30px) rotate(45deg); opacity: 0.4; }
+    100% { transform: translateY(110vh) rotate(45deg); opacity: 0; }
+  }
+
+  /* Butonlar */
+  .home-btn, .last-btn {
+    margin-top: 25px;
+    padding: 12px 24px;
+    background: #ff6f91;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .home-btn:hover, .last-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(255, 111, 145, 0.4);
+  }
+
+  #warning {
+    margin-top: 15px;
+    font-size: 1.1em;
+    color: #ffb6c1;
+    height: 24px;
+  }
+</style>
+</head>
+<body>
+  <div class="fog"></div>
+
+  <h1>😢 Üzgünüm...</h1>
+
+  <div class="text-box">
+    <p>
+      Evet riski bir şeye yol açtığımın farkındayım :( ve hayıra tıklayıp bu sayfaya geldiysen şayet demek ki ya zamanım yanlıştı, ya da sende benim sana hissettiğim hisleri hissettiremedim, sağlık olsun.
+      Umarım arkadaşlığımız zedelenmez. Bu kararı vermek aslında benim için çok zordu. Çok güzel ilerleyen bir arkadaş grubumuz var ve onun dağılmasını asla istemiyorum.
+      Beni istemezsen anlayışla karşılarım :/ Sağlık olsun.
+    </p>
+    <p class="sad">💔</p>
+  </div>
+
+  <button class="home-btn" id="homeBtn">Geri Dön 💫</button>
+  <div id="warning"></div>
+
+  <button class="last-btn" onclick="window.location.href='açıklama.html'">Son kez tıklar mısın 💔</button>
+
+  <!-- Otomatik çalan müzik -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="daytime.mp3" type="audio/mpeg">
+    Tarayıcınız audio elementini desteklemiyor.
+  </audio>
+
+  <script>
+    // Yağmur damlaları
+    for (let i = 0; i < 40; i++) {
+      const drop = document.createElement('div');
+      drop.classList.add('drop');
+      drop.style.left = Math.random() * 100 + 'vw';
+      drop.style.animationDuration = (6 + Math.random() * 6) + 's';
+      drop.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(drop);
+    }
+
+    // Düşen kırık kalpler
+    for (let i = 0; i < 15; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('broken-heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.width = heart.style.height = (15 + Math.random() * 15) + 'px';
+      heart.style.animationDuration = (7 + Math.random() * 5) + 's';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(heart);
+    }
+
+    // Müzik otomatik başlatma (tarayıcı engellerse tıklamada başlar)
+    const music = document.getElementById('bgMusic');
+    document.addEventListener('DOMContentLoaded', () => {
+      music.volume = 0.6;
+      music.play().catch(() => {
+        document.body.addEventListener('click', () => music.play(), { once: true });
+      });
+    });
+
+    // Ana sayfaya dön uyarı sistemi
+    const btn = document.getElementById('homeBtn');
+    const warning = document.getElementById('warning');
+    let clickCount = 0;
+
+    btn.addEventListener('click', () => {
+      clickCount++;
+      if (clickCount === 1) {
+        warning.textContent = "Bak Pişman Oldun Sayarım ha 😢";
+      } else if (clickCount === 2) {
+        warning.textContent = "Emin misin? Geri gidiyor musun :) ";
+      } else if (clickCount >= 3) {
+        warning.textContent = "Peki... Tekrar Düşün Bakalım 💫";
+        setTimeout(() => window.location.href = 'index.html', 1000);
+      }
+    });
+  </script>
+</body>
+</html>

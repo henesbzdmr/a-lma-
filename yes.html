@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Evet 💖</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    body {
+        margin:0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(120deg, #ff6f91, #ffb6c1);
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #fff;
+        text-align: center;
+        overflow: hidden;
+    }
+    h1 {
+        font-size: 3em;
+        margin-bottom: 10px;
+        animation: fadeScale 1.5s forwards;
+    }
+    @keyframes fadeScale {
+        from {opacity:0; transform: scale(0.8);}
+        to {opacity:1; transform: scale(1);}
+    }
+
+    .subtext {
+        opacity: 0;
+        font-size: 1.3em;
+        color: #fff;
+        animation: appearText 1s forwards;
+        animation-delay: 1.5s;
+    }
+    @keyframes appearText {
+        to { opacity: 1; transform: translateY(0); }
+        from { opacity: 0; transform: translateY(20px); }
+    }
+
+    .heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #fff0f5;
+        transform: rotate(45deg);
+        animation: floatUp linear infinite;
+        opacity: 0.7;
+    }
+    .heart::before,
+    .heart::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: inherit;
+        border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: 10px; top: 0; }
+    @keyframes floatUp {
+        0% { transform: translateY(100vh) rotate(45deg); opacity: 0.7; }
+        100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+    }
+
+    .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: red;
+        opacity: 0.9;
+        z-index: 10;
+        pointer-events: none;
+        border-radius: 50%;
+    }
+
+    .text-box {
+        background: rgba(0,0,0,0.25);
+        padding: 30px 40px;
+        border-radius: 20px;
+        max-width: 600px;
+        backdrop-filter: blur(5px);
+        position: relative;
+        z-index: 5;
+        margin-top: 20px;
+    }
+
+    .text-box p {
+        font-size: 1.3em;
+        line-height: 1.6;
+        color: #fff;
+        margin: 0;
+    }
+
+    .home-btn {
+        margin-top: 40px;
+        padding: 12px 24px;
+        background: #fff0f5;
+        color: #d6336c;
+        border: none;
+        border-radius: 30px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .home-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(255, 255, 255, 0.4);
+    }
+</style>
+</head>
+<body>
+    <h1>💖 Evet! 💖</h1>
+    <p class="subtext">Evete tıkladığını hissettim şuan, vay bee 😳💕</p>
+
+    <div class="text-box">
+        <p>
+            Buraya tıkladıysan şayet şuan ne kadar mutlu olduğumu anlayamazsın. 
+            İlk başta neden böyle hissettiğimi anlayamamıştım aslında ama zaman geçtikçe 
+            nedenini bilmediğim bir şekilde senin tarafından içine çekildiğimi farkettim. 
+            Gülüşün, bakışın her şeyine ayrı bir anlamlı şekilde bakmaya başladım. 
+            İlk başta seni üzgün gördükçe içimin acıdığını ve sen gözlerinden ağladın belki ama bende kalbimden ağlamıştım. 
+            Neden bilmiyorum ama derin hislerle sana duygu beslemişim onu farkettim. 
+            E o zaman evete tıkladığına göre yavaştan duygularım karşılık buluyor sanırım :)
+        </p>
+    </div>
+
+    <button class="home-btn" onclick="window.location.href='index.html'">Geri Dön 💖</button>
+
+    <!-- 🎵 Mor ve Ötesi - Daha Mutlu Olamam -->
+    <audio id="bgMusic" autoplay loop>
+      <source src="MorVeOtesi-DahaMutluOlamam.mp3" type="audio/mpeg">
+      Tarayıcınız audio elementini desteklemiyor.
+    </audio>
+
+    <script>
+        // Kalpler animasyonu
+        const colors = ['#fff0f5','#ff6f91','#ffb6c1','#ff99c8','#ff4d6d'];
+        for(let i=0;i<30;i++){
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random()*100+'vw';
+            const size = 10+Math.random()*25;
+            heart.style.width = heart.style.height = size+'px';
+            heart.style.background = colors[Math.floor(Math.random()*colors.length)];
+            heart.style.animationDuration = (4 + Math.random()*6) + 's';
+            heart.style.opacity = 0.5 + Math.random()*0.5;
+            document.body.appendChild(heart);
+        }
+
+        // Konfeti animasyonu
+        function createConfetti() {
+            const confettiColors = ['#ff0a54','#ff477e','#ff85a1','#fbb1b9','#f3c4fb','#c0aede'];
+            for(let i=0;i<50;i++){
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.background = confettiColors[Math.floor(Math.random()*confettiColors.length)];
+                confetti.style.left = Math.random()*100+'vw';
+                confetti.style.top = Math.random()*-20+'vh';
+                confetti.style.width = confetti.style.height = (5+Math.random()*8)+'px';
+                document.body.appendChild(confetti);
+                animateConfetti(confetti);
+            }
+        }
+
+        function animateConfetti(el){
+            const end = window.innerHeight + 50;
+            const duration = 3000 + Math.random()*2000;
+            const rotate = Math.random()*360;
+            let startTime = null;
+
+            function step(timestamp){
+                if(!startTime) startTime = timestamp;
+                const progress = timestamp - startTime;
+                const fraction = progress/duration;
+                if(fraction < 1){
+                    el.style.top = fraction*end - 20 + 'px';
+                    el.style.transform = `rotate(${rotate*fraction}deg)`;
+                    requestAnimationFrame(step);
+                } else {
+                    el.remove();
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
+        window.onload = createConfetti;
+
+        // 🎶 Müzik otomatik başlatma
+        const music = document.getElementById('bgMusic');
+        document.addEventListener('DOMContentLoaded', () => {
+            music.volume = 0.6;
+            music.play().catch(() => {
+                // Tarayıcı engellerse tıklamayla başlat
+                document.body.addEventListener('click', () => music.play(), { once: true });
+            });
+        });
+    </script>
+</body>
+</html>

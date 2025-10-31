@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Son Sözlerim 💔</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(180deg, #2c2c2c, #4b4b4b);
+    color: #eee;
+    text-align: center;
+    padding: 80px 20px;
+    min-height: 100vh;
+  }
+  h1 {
+    color: #ff6f91;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    animation: fadeIn 1.5s ease forwards;
+  }
+  p {
+    max-width: 700px;
+    margin: 20px auto;
+    line-height: 1.8;
+    font-size: 1.2em;
+    opacity: 0.9;
+  }
+  .note-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 40px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 20px rgba(255, 111, 145, 0.2);
+  }
+  textarea {
+    width: 100%;
+    max-width: 600px;
+    height: 180px;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1em;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    resize: none;
+    margin-top: 10px;
+  }
+  .back-btn {
+    margin-top: 30px;
+    padding: 12px 24px;
+    background: #ff6f91;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .back-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(255,111,145,0.4);
+  }
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+</style>
+</head>
+<body>
+
+  <h1>Son Kez İçimi Dökmek İstedim :)</h1>
+  <p>Bazen kelimeler anlatamaz ama yine de içimde kalanları bir yere dökmek ister insan...</p>
+
+  <div class="note-box">
+    <p>
+      Bazen uzaktan sever insan. Yakınlaşmaya korkarak sever. O kişinini kendisinden kaçmasından korkar. 
+      O korkularda boğuşarak bazı kararlar alır. O hoşlanmasa bile hoşlanır, bakışına mutlu olur, gülüşüyle güler. 
+      Aynı o durumu yaşadım işte :) Bu noktaya geldiysen asla eskisi gibi yakın olamayız bunun farkındayım. 
+      Ama en azından sohbet, muhabbete devam edecek yakınlığımızın kalmasını isterim. 
+      Belki salaklık ettim. En azından seninle yakındım belki bu bile bana yeterdi ama ne yapayım 1.5 aydır içimden senden hoşlanmaya devam ettikçe gülüşünle güldüm, 
+      yanımda ağlarken gözünden düşen yaşla kalbimden ağladım. 
+      Belki saçma geliyor ama ne kadar düşünüp kafayı yediğimi can, salim iyi bilir sdgfsdgfsgdf. 
+      Sonunda pişman olacağım bir karar olsa bile iyi ki diyeceğim. 🕯️
+    </p>
+  </div>
+
+  <button class="back-btn" onclick="window.location.href='index.html'">Başa Dön 💫</button>
+
+  <!-- 🎵 Boramess - Bizden Olsun İsterdim -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="Boramess - bizden olsun isterdim (lirik videosözleri).mp3" type="audio/mpeg">
+    Tarayıcınız ses dosyasını desteklemiyor.
+  </audio>
+
+  <script>
+    const music = document.getElementById('bgMusic');
+    document.addEventListener('DOMContentLoaded', () => {
+      music.volume = 0.6;
+      music.play().catch(() => {
+        // Eğer tarayıcı otomatik çalmayı engellerse, tıklamayla başlatılır
+        document.body.addEventListener('click', () => music.play(), { once: true });
+      });
+    });
+  </script>
+
+</body>
+</html>

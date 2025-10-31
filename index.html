@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Senin için</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(to right, #ffe6f0, #fff0f5);
+        color: #333;
+        overflow-x: hidden;
+        text-align: center;
+    }
+
+    .heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #d6336c;
+        transform: rotate(45deg);
+        animation: floatUp 8s linear infinite;
+        opacity: 0.7;
+    }
+    .heart::before,
+    .heart::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #d6336c;
+        border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: 10px; top: 0; }
+
+    @keyframes floatUp {
+        0% { transform: translateY(100vh) rotate(45deg); opacity: 0.7; }
+        100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+    }
+
+    header {
+        padding: 100px 20px 50px;
+        position: relative;
+        z-index: 1;
+    }
+
+    h1 {
+        font-size: 3em;
+        color: #d6336c;
+        opacity: 0;
+        transform: scale(0.8);
+        animation: fadeScale 1.5s forwards;
+    }
+
+    p {
+        font-size: 1.2em;
+        color: #555;
+        margin-top: 20px;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeScale 1.5s forwards 0.8s;
+    }
+
+    .btn {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 14px 28px;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        color: white;
+        border: none;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .btn.showMessage {
+        background: linear-gradient(135deg, #d6336c, #ff6f91);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .btn.showMessage:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .hidden-message {
+        margin: 40px auto 0;
+        padding: 20px;
+        border-radius: 20px;
+        background: #ffe6f0;
+        max-width: 400px;
+        color: #d6336c;
+        font-size: 1.2em;
+        box-shadow: 0 0 20px #ff6f91, 0 0 30px #d6336c inset;
+        display: none;
+        opacity: 0;
+        animation: glow 2s infinite alternate;
+        transition: opacity 0.8s;
+    }
+
+    #choiceButtons {
+        margin-top: 20px;
+        display: none;
+    }
+
+    .btn.choice {
+        animation: buttonGlow 3s infinite alternate;
+        border: none;
+        border-radius: 30px;
+        color: white;
+        padding: 14px 28px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .btn.choice:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(255,111,145,0.5);
+    }
+
+    #funnyWarning {
+        margin-top: 10px;
+        color: #d6336c;
+        font-weight: 600;
+        min-height: 24px;
+    }
+
+    @keyframes fadeScale {
+        to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @keyframes glow {
+        0% { box-shadow: 0 0 15px #ff6f91, 0 0 25px #d6336c inset; }
+        100% { box-shadow: 0 0 30px #ff6f91, 0 0 50px #d6336c inset; }
+    }
+
+    @keyframes buttonGlow {
+        0% { background: linear-gradient(135deg, #d6336c, #ff6f91); }
+        50% { background: linear-gradient(135deg, #ff6f91, #d6336c); }
+        100% { background: linear-gradient(135deg, #d6336c, #ff6f91); }
+    }
+
+    section {
+        margin: 80px 20px;
+        padding: 50px 20px;
+        background: #fff0f5;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    section img {
+        max-width: 200px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+
+<script>
+    for(let i=0;i<20;i++){
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (5 + Math.random()*5) + 's';
+        heart.style.width = heart.style.height = (10 + Math.random()*20) + 'px';
+        document.body.appendChild(heart);
+    }
+</script>
+
+<header>
+    <h1>Merhaba…</h1>
+    <p>Bu siteyi yapma amacım kendi içimde bir yol bulamayan duygularıma seninle ya da sensiz (umarım seninle) olacak şekilde bir yol bulmak için yaptım.</p>
+    <button class="btn showMessage" onclick="showMessage()">Sana Özel ✨</button>
+
+    <div class="hidden-message" id="message">
+        <p>Bazen kelimeler yetmez ama sana hislerimi göstermek istedim <span class="emoji">💖</span></p>
+         <span class="emoji">🌸</span></p>
+
+        <div id="choiceButtons">
+            <button class="btn choice" onclick="window.location.href='yes.html'">
+                Evet <span class="emoji">💖</span>
+            </button>
+            <button class="btn choice" id="noBtn">
+                Hayır <span class="emoji">😢</span>
+            </button>
+            <p id="funnyWarning"></p>
+        </div>
+    </div>
+</header>
+
+<section>
+    <h2>Derinden...</h2>
+    <p>Bu siteyi yaparken aslında ne kadar hoşlandığımın daha da farkına vardım. Evet belki olmayacak ama, seni sensizliğinle sevmek bile güzeldi :)  <span class="emoji">💖</span></p>
+</section>
+
+<script>
+    function showMessage() {
+        const msg = document.getElementById('message');
+        const buttons = document.getElementById('choiceButtons');
+
+        if(msg.style.display === 'block'){
+            msg.style.opacity = 0;
+            buttons.style.display = 'none';
+            setTimeout(() => msg.style.display = 'none', 500);
+        } else {
+            msg.style.display = 'block';
+            setTimeout(() => {
+                msg.style.opacity = 1;
+                buttons.style.display = 'block';
+            }, 10);
+        }
+    }
+
+    // Hayır butonu için duygusal uyarılar
+    let noClickCount = 0;
+    const noBtn = document.getElementById('noBtn');
+    const funnyWarning = document.getElementById('funnyWarning');
+
+    if(noBtn){
+        noBtn.addEventListener('click', () => {
+            noClickCount++;
+            if(noClickCount === 1){
+                funnyWarning.textContent = "Emin misin?.. 😢";
+            } else if(noClickCount === 2){
+                funnyWarning.textContent = "Gerçekten mi gitmek istiyorsun?.. 💔";
+            } else if(noClickCount >= 3){
+                funnyWarning.textContent = "Peki... Hoşça kal 💫";
+                setTimeout(() => window.location.href = 'no.html', 1000);
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
